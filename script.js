@@ -7,7 +7,7 @@ async function buscarEndereco(cep) {
             const data = await response.json();
 
             if (data.erro) {
-                const mensagem = "Cep não existe!";
+                const mensagem = `<p>Cep não existe!</p>`;
                 mensagemErro.innerHTML = mensagem;
                 throw new Error(mensagem);
             } else {
@@ -27,10 +27,10 @@ async function buscarEndereco(cep) {
             throw error;
         }
     } else {
-        if (cep.trim().length !== 8) {
-            mensagemErro.innerHTML = "Cep deve conter 8 números";
+        if (!isNaN(cep) && cep.trim().length !== 8) {
+            mensagemErro.innerHTML = `<p>Cep deve conter 8 números</p>`;
         } else {
-            const mensagem = "Nenhum valor informado no cep ou valor não é numérico";
+            const mensagem = `<p>Nenhum valor informado no cep ou valor não é numérico</p>`;
             mensagemErro.innerHTML = mensagem;
             return console.error(mensagem)
         }
